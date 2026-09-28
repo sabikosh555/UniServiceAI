@@ -1,0 +1,89 @@
+{% extends 'cabinet/base_cabinet.html' %}
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<div class="content-header py-4">
+    <h1 class="h4 fw-bold mb-1">Профиль</h1>
+    <p class="text-muted small mb-0">Жеке деректеріңізді өзгертіңіз</p>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card border-0 shadow-sm text-center">
+                <div class="card-body py-5">
+                    <div class="user-avatar mx-auto mb-3"
+                         style="width: 100px; height: 100px; font-size: 2.5rem;">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+
+                    <input type="text"
+                           name="full_name"
+                           class="form-control text-center fw-bold"
+                           value="{{ user.get_full_name }}"
+                           placeholder="Аты-жөні">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom py-3">
+                    <h5 class="mb-0 fw-semibold">Жеке ақпарат</h5>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="mb-3">
+                        <label class="form-label">Студенттік ID</label>
+                        <input type="text"
+                               name="student_id"
+                               class="form-control"
+                               value="{{ profile.student_id }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Факультет</label>
+                        <input type="text"
+                               name="faculty"
+                               class="form-control"
+                               value="{{ profile.faculty }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Мамандық</label>
+                        <input type="text"
+                               name="specialty"
+                               class="form-control"
+                               value="{{ profile.specialty }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Курс</label>
+                        <input type="text"
+                               name="course"
+                               class="form-control"
+                               value="{{ profile.course }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Электрондық пошта</label>
+                        <input type="email"
+                               name="email"
+                               class="form-control"
+                               value="{{ user.email }}">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Өзгерістерді сақтау
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+{% endblock %}
